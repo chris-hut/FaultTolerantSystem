@@ -1,17 +1,30 @@
 package test;
 
 import com.hut.DataGenerator;
-import org.junit.Test;
+import org.junit.Before;
 
 /**
- * Created by chris on 10/17/14.
+ * Tests the Data Generation Class
  */
 public class DataGeneratorTest extends junit.framework.TestCase {
 
-    @Test
-    public void testDataGeneratorSuccess(){
-        DataGenerator dg = new DataGenerator();
-        assert dg != null;
+    private DataGenerator dg;
+
+
+    @Before
+    public void setUp(){
+        dg = new DataGenerator();
+    }
+
+    public void testRandomNumberGenerator(){
+        // Can't really test the numbers as we'd just be testing how random Random is
+        int[] arr = dg.generateNumbers(5);
+        assertEquals(arr.length, 5);
+    }
+
+    public void testRandomNumberGeneratorEmpty(){
+        int[] arr = dg.generateNumbers(0);
+        assertEquals(arr.length, 0);
     }
 
 }
