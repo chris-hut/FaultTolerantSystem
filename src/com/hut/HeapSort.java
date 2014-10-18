@@ -9,9 +9,10 @@ public class HeapSort extends Sort{
 
     @Override
     public void sort(int[] values){
-        // If only one value it's already sorted
-        if(values.length == 1) sortedValues = values;
-        // If value was null let someone else deal with this
+        sortedValues = values;
+
+        if(sortedValues.length == 1) return;
+
         if (sortedValues == null) return;
 
         // build heap and sort it
@@ -23,6 +24,7 @@ public class HeapSort extends Sort{
         }
 
         complete = true;
+
     }
 
     private void buildHeap(){

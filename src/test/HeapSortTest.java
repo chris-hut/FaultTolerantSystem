@@ -98,4 +98,14 @@ public class HeapSortTest extends TestCase {
            prev = a[i];
        }
    }
+
+    private void debugPrint(int[]a){
+        StringBuilder sb = new StringBuilder();
+        if(a.length == 0) System.out.println("Array was 0 length");
+        for(int i : a){
+            sb.append(i + " ");
+        }
+
+        System.out.println(sb.toString());
+    }
 }
