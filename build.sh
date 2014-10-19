@@ -11,4 +11,4 @@ rm *.so
 javah -jni com.hut.InsertionSort
 gcc -o libinsertionsort.so -lc -shared -I $JAVA_HOME/include -I $JAVA_HOME/include/linux -fPIC com/hut/insertion_sort.c
 export LD_LIBRARY_PATH=.
-java com.hut.Driver outfile.txt sorted.txt 1 1 100
+java com.hut.Driver outfile.txt sorted.txt 1 1 1

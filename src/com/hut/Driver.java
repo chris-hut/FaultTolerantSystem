@@ -2,6 +2,7 @@ package com.hut;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Timer;
 
 /**
  * Drives the whole program!
@@ -40,9 +41,10 @@ public class Driver {
 
         // If we're here we have a good array to sort!
         int[] valuesForPrimary = valuesToSort;
-        runSort(new HeapSort(), valuesForPrimary, timeout, primaryFailure);
+        Sort primary = new HeapSort();
+        runSort(primary, valuesForPrimary, timeout, primaryFailure);
         // TODO: Check if sort failed or if watchdoge expired
-        if(AcceptanceTest.isSorted(valuesForPrimary)){
+        if(primary.isComplete() && AcceptanceTest.isSorted(valuesForPrimary)){
             // This sorted everything properly, we can go home now
             try{
                 FileUtil.writeFile(out, valuesForPrimary);
@@ -52,11 +54,12 @@ public class Driver {
                 System.exit(1);
             }
         }else{
+            Sort secondary = new InsertionSort();
             // TODO: Gotta run the secondary sort
-            runSort(new InsertionSort(), valuesToSort, timeout, secondaryFailure);
+            runSort(secondary, valuesToSort, timeout, secondaryFailure);
 
             // TODO: Check if sort failed or if watchdoge expired
-            if(AcceptanceTest.isSorted(valuesToSort)){
+            if(secondary.isComplete() && AcceptanceTest.isSorted(valuesToSort)){
                 try{
                     FileUtil.writeFile(out, valuesToSort);
                 }catch(IOException e){
@@ -64,6 +67,8 @@ public class Driver {
                     System.err.println("Damn that was the kind of effort we like to see from you guys out there");
                     System.exit(1);
                 }
+            } else{
+                System.out.println("Shit everything failed");
             }
         }
 
@@ -71,8 +76,17 @@ public class Driver {
 
     private static void runSort(Sort s, int[] values, int timeout, double failure){
         // TODO: Watchdog shit it in here
-
-        s.sort(values);
+        WatchDoge watchDoge = new WatchDoge(s);
+        Timer t = new Timer();
+        s.setValues(values);
+        t.schedule(watchDoge, timeout);
+        s.start();
+        try{
+            s.join();
+            t.cancel();
+        } catch(InterruptedException e){
+            // Can't those doges learn their manners
+        }
     }
 
     private static int[] getValuesToSort(String fileName) throws IOException{

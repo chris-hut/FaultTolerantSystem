@@ -8,7 +8,7 @@ public class HeapSort extends Sort{
     private int heapSize;
 
     @Override
-    public void sort(int[] values){
+    public void sort(){
         sortedValues = values;
 
         if(sortedValues.length == 1) return;
@@ -24,6 +24,7 @@ public class HeapSort extends Sort{
         }
 
         complete = true;
+        while(true){/*lol*/}
 
     }
 

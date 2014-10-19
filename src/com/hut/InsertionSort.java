@@ -16,12 +16,12 @@ public class InsertionSort extends Sort {
     /***
      *
      * Provides an insertion sort in C
-     * @param values values to sort
      */
     @Override
-    public void sort(int[] values){
+    public void sort(){
         // TODO: Check return value of cSort
         cSort(values);
+        for(;;);
      }
 
     private native int cSort(int[] values);
@@ -33,31 +33,38 @@ public class InsertionSort extends Sort {
         Random rand = new Random();
         int[] a = {0};
         InsertionSort is = new InsertionSort();
-        is.sort(a);
+        is.setValues(a);
+        is.sort();
         checkSorted(a);
         int[] b= {};
-        is.sort(b);
+        is.setValues(b);
+        is.sort();
         checkSorted(b);
         int[] c= {1,1,1,1,1};
-        is.sort(c);
+        is.setValues(c);
+        is.sort();
         checkSorted(c);
         int[] d = {4,8,15,16,23,42};
-        is.sort(d);
+        is.setValues(d);
+        is.sort();
         checkSorted(d);
         int[] e = {108,42,23,16,15,8,4};
-        is.sort(e);
+        is.setValues(e);
+        is.sort();
         checkSorted(e);
         int[] f = new int[100];
         for(int i = 0; i < 100; i++){
             f[i] = rand.nextInt();
         }
-        is.sort(f);
+        is.setValues(f);
+        is.sort();
         checkSorted(f);
         int[] g = new int[101];
         for(int i = 0; i < 100; i++){
             g[i] = rand.nextInt();
         }
-        is.sort(g);
+        is.setValues(g);
+        is.sort();
         checkSorted(g);
 
     }
