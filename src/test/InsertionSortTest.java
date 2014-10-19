@@ -14,7 +14,7 @@ public class InsertionSortTest extends TestCase {
 
     @Before
     public void setUp(){
-        s = new InsertionSort();
+        //s = new InsertionSort();
     }
 
     public void testLoadLibrary(){
