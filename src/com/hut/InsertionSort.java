@@ -3,7 +3,7 @@ package com.hut;
 public class InsertionSort extends Sort {
 
     static{
-        System.loadLibrary("libinsertionsort");
+        //System.loadLibrary("libinsertionsort");
     }
 
     public static void main(String[] args){
