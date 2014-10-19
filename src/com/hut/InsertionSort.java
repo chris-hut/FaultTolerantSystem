@@ -8,7 +8,8 @@ public class InsertionSort extends Sort {
 
     public static void main(String[] args){
         InsertionSort a = new InsertionSort();
-        a.sort(new int[]{1});
+        int[] arr = {3, 2, 1};
+        a.sort(arr);
     }
 
     /***
@@ -18,8 +19,9 @@ public class InsertionSort extends Sort {
      */
     @Override
     public void sort(int[] values){
+        // TODO: Check return value of cSort
         cSort(values);
      }
 
-    private native void cSort(int[] values);
+    private native int cSort(int[] values);
 }
