@@ -13,6 +13,9 @@ import java.util.Random;
 public class InsertionSortTest extends TestCase {
     private Sort sort;
 
+    public void testMe(){
+
+    }
     // TODO: Figure out how to run these or don't
 
    /* @Before

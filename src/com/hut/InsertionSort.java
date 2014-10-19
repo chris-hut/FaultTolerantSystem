@@ -9,7 +9,8 @@ public class InsertionSort extends Sort {
     }
 
     public static void main(String[] args){
-        testInsertionSort();
+        // Uncomment this to perform basic sanity test
+        //testInsertionSort();
     }
 
     /***

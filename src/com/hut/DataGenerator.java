@@ -37,7 +37,7 @@ public class DataGenerator {
         Random gen = new Random();
 
         for(int i = 0; i < thisMany; i++){
-            rands[i] = gen.nextInt();
+            rands[i] = gen.nextInt(100);
         }
         return rands;
     }

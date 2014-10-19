@@ -53,6 +53,18 @@ public class Driver {
             }
         }else{
             // TODO: Gotta run the secondary sort
+            runSort(new InsertionSort(), valuesToSort, timeout, secondaryFailure);
+
+            // TODO: Check if sort failed or if watchdoge expired
+            if(AcceptanceTest.isSorted(valuesToSort)){
+                try{
+                    FileUtil.writeFile(out, valuesToSort);
+                }catch(IOException e){
+                    // Great effort boys but today just wasn't our day
+                    System.err.println("Damn that was the kind of effort we like to see from you guys out there");
+                    System.exit(1);
+                }
+            }
         }
 
     }
@@ -67,7 +79,7 @@ public class Driver {
         String values[] = FileUtil.readFile(fileName);
         int intValues[] = new int[values.length];
         try{
-            for(int i = 0; i < values.length-1; i++){
+            for(int i = 0; i < values.length; i++){
                 intValues[i] = Integer.parseInt(values[i]);
             }
         }catch(NumberFormatException e){
@@ -88,5 +100,14 @@ public class Driver {
                 .append("<timeout> is number of seconds to wait for each sort");
         System.out.println(sb.toString());
         System.exit(1);
+    }
+    /**
+     * Used for debugging, prints array to console*/
+    private static void debugPrint(int[] a){
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < a.length; i++){
+            sb.append(a[i]).append(" ");
+        }
+        System.out.println(sb.toString());
     }
 }
