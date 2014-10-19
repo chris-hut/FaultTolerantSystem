@@ -1,7 +1,6 @@
 package test;
 
 import com.hut.InsertionSort;
-import com.hut.Sort;
 import junit.framework.TestCase;
 import org.junit.Before;
 

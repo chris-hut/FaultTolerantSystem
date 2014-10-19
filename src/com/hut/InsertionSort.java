@@ -1,8 +1,5 @@
 package com.hut;
 
-/**
- * Created by chris on 10/18/14.
- */
 public class InsertionSort extends Sort {
 
     static{

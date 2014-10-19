@@ -7,6 +7,7 @@ import java.io.*;
  *
  * Created by chris on 17/10/14.
  */
+@SuppressWarnings({"ALL", "WeakerAccess"})
 public class FileUtil {
 
     public static String[] readFile(String name) throws IOException{

@@ -47,7 +47,6 @@ public class HeapSortTest extends TestCase {
         int a[] = {4, 8, 15, 16, 23, 42};
         sort.sort(a);
 
-        int ans[] = {4, 8, 15, 16, 23, 42};
         checkSorted(a);
     }
 
@@ -103,7 +102,7 @@ public class HeapSortTest extends TestCase {
         StringBuilder sb = new StringBuilder();
         if(a.length == 0) System.out.println("Array was 0 length");
         for(int i : a){
-            sb.append(i + " ");
+            sb.append(i).append(" ");
         }
 
         System.out.println(sb.toString());
