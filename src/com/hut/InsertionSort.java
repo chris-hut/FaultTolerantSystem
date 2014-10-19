@@ -7,8 +7,8 @@ public class InsertionSort extends Sort {
     }
 
     public static void main(String[] args){
-        //InsertionSort a = new InsertionSort();
-        //a.sort(new int[] {});
+        InsertionSort a = new InsertionSort();
+        a.sort(new int[]{1});
     }
 
     /***
@@ -17,6 +17,9 @@ public class InsertionSort extends Sort {
      * @param values values to sort
      */
     @Override
-    public native void sort(int[] values);
+    public void sort(int[] values){
+        cSort(values);
+     }
 
+    private native void cSort(int[] values);
 }
