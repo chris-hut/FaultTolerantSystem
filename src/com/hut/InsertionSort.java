@@ -3,11 +3,12 @@ package com.hut;
 public class InsertionSort extends Sort {
 
     static{
-        //System.loadLibrary("libinsertionsort");
+        System.loadLibrary("insertionsort");
     }
 
     public static void main(String[] args){
-        
+        //InsertionSort a = new InsertionSort();
+        //a.sort(new int[] {});
     }
 
     /***
