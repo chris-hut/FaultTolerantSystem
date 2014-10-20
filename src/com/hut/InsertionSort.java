@@ -21,7 +21,6 @@ public class InsertionSort extends Sort {
     @Override
     public void sort(){
         memoryAccesses = cSort(values);
-        System.out.println("InsertionSort made " + memoryAccesses + " memory accesses");
         complete = noFailure();
      }
 

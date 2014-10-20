@@ -20,7 +20,6 @@ public class HeapSort extends Sort{
             heapSize--;                                                 memoryAccesses++;
             maxHeapify(0);
         }
-        System.out.println("Heapsort made " + memoryAccesses + " memory accesses");
         complete = noFailure();
     }
 
