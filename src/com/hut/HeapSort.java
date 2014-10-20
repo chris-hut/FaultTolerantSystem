@@ -21,7 +21,7 @@ public class HeapSort extends Sort{
             maxHeapify(0);
         }
         System.out.println("Heapsort made " + memoryAccesses + " memory accesses");
-        complete = !failure();
+        complete = noFailure();
     }
 
     private void buildHeap(){

@@ -1,7 +1,6 @@
 package test;
 
 import com.hut.DataGenerator;
-import org.junit.Before;
 
 /**
  * Tests the Data Generation Class

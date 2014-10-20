@@ -1,6 +1,5 @@
 package com.hut;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Timer;
 
@@ -43,7 +42,6 @@ public class Driver {
         int[] valuesForPrimary = valuesToSort.clone();
         Sort primary = new HeapSort();
         runSort(primary, valuesForPrimary, timeout, primaryFailure);
-        // TODO: Check if sort failed or if watchdoge expired
         if(primary.isComplete() && AcceptanceTest.isSorted(valuesForPrimary)){
             System.out.println("Primary sort completed");
             // This sorted everything properly, we can go home now
@@ -57,10 +55,8 @@ public class Driver {
         }else{
             System.out.println("Primary sort failed");
             Sort secondary = new InsertionSort();
-            // TODO: Gotta run the secondary sort
             runSort(secondary, valuesToSort, timeout, secondaryFailure);
 
-            // TODO: Check if sort failed or if watchdoge expired
             if(secondary.isComplete() && AcceptanceTest.isSorted(valuesToSort)){
                 System.out.println("Secondary sort completed");
                 try{
@@ -78,7 +74,6 @@ public class Driver {
     }
 
     private static void runSort(Sort s, int[] values, int timeout, double failure){
-        // TODO: Watchdog shit it in here
         WatchDoge watchDoge = new WatchDoge(s);
         Timer t = new Timer();
         s.setValues(values);
@@ -89,6 +84,7 @@ public class Driver {
             s.join();
             t.cancel();
         } catch(InterruptedException e){
+            System.out.println("k");
             // Can't those doges learn their manners
         }
     }
@@ -110,12 +106,12 @@ public class Driver {
     private static void invalidInput(){
         System.out.println("DataSorter is a fault tolerant sorting system.");
         StringBuilder sb = new StringBuilder();
-        sb.append("java sorter <in_file> <out_file> <primary_fail> <secondary_fail> <timeout>\n")
-                .append("<in_file> is the input file containing integer values to sort\n")
-                .append("<out_file> is the output file where sorted values will be written too\n")
-                .append("<primary_fail> is the failure probability of the primary sorting algorithm")
-                .append("<secondary_fail> is the failure probability of the secondary sorting algorithm")
-                .append("<timeout> is number of seconds to wait for each sort");
+        sb.append("java com.hut.Driver <in_file> <out_file> <primary_fail> <secondary_fail> <timeout>\n")
+            .append("\tin_file is the input file containing integer values to sort\n")
+            .append("\tout_file is the output file where sorted values will be written too\n")
+            .append("\tprimary_fail is the noFailure probability of the primary sorting algorithm\n")
+            .append("\tsecondary_fail is the noFailure probability of the secondary sorting algorithm\n")
+            .append("\ttimeout is number of seconds to wait for each sort");
         System.out.println(sb.toString());
         System.exit(1);
     }
@@ -123,8 +119,8 @@ public class Driver {
      * Used for debugging, prints array to console*/
     private static void debugPrint(int[] a){
         StringBuilder sb = new StringBuilder();
-        for(int i = 0; i < a.length; i++){
-            sb.append(a[i]).append(" ");
+        for (int anA : a) {
+            sb.append(anA).append(" ");
         }
         System.out.println(sb.toString());
     }

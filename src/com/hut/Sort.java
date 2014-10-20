@@ -11,7 +11,7 @@ public abstract class Sort extends Thread{
 
     protected int[] values;
 
-    protected double failure = 0;
+    private double failure = 0;
 
     /**
      * The number of memory accesses that are made during a sort. This will be incremented by the
@@ -37,18 +37,19 @@ public abstract class Sort extends Thread{
         } catch (ThreadDeath td){
             // The watchdoge strikes again!
             System.out.println("Sort timed out");
+            throw new ThreadDeath();
         }
     }
 
-    protected boolean failure(){
-        if(failure == 0) return false;
+    protected boolean noFailure(){
+        if(failure == 0) return true;
 
         double hazard = memoryAccesses*failure;
         double random = Math.random();
         if(random >= 0.5 && random <=0.5+hazard){
-            System.out.println("Hardware failure");
-            return true;
+            System.out.println("Hardware noFailure");
+            return false;
         }
-        return false;
+        return true;
     }
 }

@@ -27,8 +27,11 @@ public class DataGenerator {
     }
 
     private static void usageMessage(){
-        // TODO: Make actual usage message
-        System.out.println("Learn to use the program");
+        StringBuilder sb = new StringBuilder();
+        sb.append("java com.hut.DataGenerator <outfile> <num_values>\n")
+            .append("\toutfile is the file to output the numbers too\n")
+            .append("\tnum_files is the number of integers to put in the file\n");
+        System.out.println(sb.toString());
         System.exit(1);
     }
 

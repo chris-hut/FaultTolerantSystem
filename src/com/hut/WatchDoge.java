@@ -7,7 +7,7 @@ import java.util.TimerTask;
  */
 public class WatchDoge extends TimerTask {
 
-    private Thread watching;
+    private final Thread watching;
 
     public WatchDoge(Thread doge){
         watching = doge;
@@ -17,7 +17,6 @@ public class WatchDoge extends TimerTask {
     public void run() {
         // Way too lazy to do this properly plus his example uses stop
         watching.stop();
-        System.out.println("Sort timed out");
     }
 }
 

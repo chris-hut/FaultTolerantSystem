@@ -24,8 +24,6 @@ JNIEXPORT jint JNICALL Java_com_hut_InsertionSort_cSort
         }
     }
 
-    // TODO: Check if we died here and return 0 if we did die
-
     (*env)->ReleaseIntArrayElements(env, array, localArray, 0);
     return memoryAccesses;
 }

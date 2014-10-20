@@ -13,10 +13,10 @@ import java.util.Random;
 public class InsertionSortTest extends TestCase {
     private Sort sort;
 
-    public void testMe(){
-
-    }
-    // TODO: Figure out how to run these or don't
+    /*
+    * Test suite for Insertion sort.
+    * Wasn't able to get this working using intelij, so I just made a shitty "test suite"
+    * in InsertionSort.java that you can call from the main method.*/
 
    /* @Before
     public void setUp(){

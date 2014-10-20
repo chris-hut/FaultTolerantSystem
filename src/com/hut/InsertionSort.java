@@ -8,10 +8,11 @@ public class InsertionSort extends Sort {
         System.loadLibrary("insertionsort");
     }
 
-    public static void main(String[] args){
+    // Can be used to test C insertion sort code
+    /*public static void main(String[] args){
         // Uncomment this to perform basic sanity test
         //testInsertionSort();
-    }
+    }*/
 
     /***
      *
@@ -21,7 +22,7 @@ public class InsertionSort extends Sort {
     public void sort(){
         memoryAccesses = cSort(values);
         System.out.println("InsertionSort made " + memoryAccesses + " memory accesses");
-        complete = !failure();
+        complete = noFailure();
      }
 
     private native int cSort(int[] values);
