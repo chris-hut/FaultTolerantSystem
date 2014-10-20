@@ -19,9 +19,9 @@ public class InsertionSort extends Sort {
      */
     @Override
     public void sort(){
-        // TODO: Check return value of cSort
-        cSort(values);
-        complete = true;
+        memoryAccesses = cSort(values);
+        System.out.println("InsertionSort made " + memoryAccesses + " memory accesses");
+        complete = !failure();
      }
 
     private native int cSort(int[] values);

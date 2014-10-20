@@ -40,9 +40,8 @@ public class Driver {
         }
 
         // If we're here we have a good array to sort!
-        int[] valuesForPrimary = valuesToSort;
+        int[] valuesForPrimary = valuesToSort.clone();
         Sort primary = new HeapSort();
-        System.out.println("Trying primary sort");
         runSort(primary, valuesForPrimary, timeout, primaryFailure);
         // TODO: Check if sort failed or if watchdoge expired
         if(primary.isComplete() && AcceptanceTest.isSorted(valuesForPrimary)){
@@ -56,7 +55,7 @@ public class Driver {
                 System.exit(1);
             }
         }else{
-            System.out.println("Trying secondary sort");
+            System.out.println("Primary sort failed");
             Sort secondary = new InsertionSort();
             // TODO: Gotta run the secondary sort
             runSort(secondary, valuesToSort, timeout, secondaryFailure);
@@ -72,7 +71,7 @@ public class Driver {
                     System.exit(1);
                 }
             } else{
-                System.out.println("Shit everything failed");
+                System.out.println("Both sorts failed");
             }
         }
 
@@ -83,6 +82,7 @@ public class Driver {
         WatchDoge watchDoge = new WatchDoge(s);
         Timer t = new Timer();
         s.setValues(values);
+        s.setFailure(failure);
         t.schedule(watchDoge, timeout);
         s.start();
         try{

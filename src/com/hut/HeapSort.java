@@ -9,67 +9,68 @@ public class HeapSort extends Sort{
 
     @Override
     public void sort(){
-        sortedValues = values;
+        if(values.length == 1) return;                                  memoryAccesses++;
 
-        if(sortedValues.length == 1) return;
-
-        if (sortedValues == null) return;
+        if (values == null) return;                                     memoryAccesses++;
 
         // build heap and sort it
         buildHeap();
-        for (int i = sortedValues.length-1; i>=1; i--){
+        for (int i = values.length-1; i>=1; i--){                       memoryAccesses+=2;
             swapElements(0, i);
-            heapSize--;
+            heapSize--;                                                 memoryAccesses++;
             maxHeapify(0);
         }
-        complete = true;
+        System.out.println("Heapsort made " + memoryAccesses + " memory accesses");
+        complete = !failure();
     }
 
     private void buildHeap(){
-        heapSize = sortedValues.length;
-        int halfway = (sortedValues.length-1)/2;
-        for (int i = halfway; i >= 0; i--){
+        heapSize = values.length;                                       memoryAccesses+=2;
+        int halfway = (values.length-1)/2;                              memoryAccesses+=2;
+        for (int i = halfway; i >= 0; i--){                             memoryAccesses+=2;
             maxHeapify(i);
         }
     }
 
     private void swapElements(int i, int j){
-        if(i<0 || i >= sortedValues.length){
+        if(i<0 || i >= values.length){                                  memoryAccesses+=3;
             return;
         }
 
-        if(j<0 || j >= sortedValues.length){
+        if(j<0 || j >= values.length){                                  memoryAccesses+=3;
             return;
         }
 
         // Was going to swap in place, but we care more about memory hits than temp vars
-        int temperino = sortedValues[i];
-        sortedValues[i] = sortedValues[j];
-        sortedValues[j] = temperino;
+        int temperino = values[i];                                      memoryAccesses++;
+        values[i] = values[j];                                          memoryAccesses++;
+        values[j] = temperino;                                          memoryAccesses++;
     }
 
     private void maxHeapify(int root){
-        int lc = leftChild(root);
-        int rc = rightChild(root);
+        int lc = leftChild(root);                                       memoryAccesses++;
+        int rc = rightChild(root);                                      memoryAccesses++;
 
-        int big = root;
-        if(lc < heapSize && sortedValues[lc] > sortedValues[root]){
-            big = lc;
+        int big = root;                                                 memoryAccesses++;
+        if(lc < heapSize && values[lc] > values[root]){                 memoryAccesses+=4;
+            big = lc;                                                   memoryAccesses++;
         }
-        if(rc < heapSize && sortedValues[rc] > sortedValues[big]){
-            big = rc;
+        if(rc < heapSize && values[rc] > values[big]){                  memoryAccesses+=4;
+            big = rc;                                                   memoryAccesses++;
         }
-        if(big != root){
+        if(big != root){                                                memoryAccesses+=2;
             swapElements(root, big);
             maxHeapify(big);
         }
     }
 
     private int leftChild(int i){
+                                                                        memoryAccesses++;
         return i*2;
     }
 
     private int rightChild(int i){
+                                                                        memoryAccesses++;
         return i*2+1;
     }
 }

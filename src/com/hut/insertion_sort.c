@@ -2,8 +2,8 @@
 
 JNIEXPORT jint JNICALL Java_com_hut_InsertionSort_cSort
   (JNIEnv *env, jobject ojb, jintArray array){
-    printf("We have to go back\n");
 
+    int memoryAccesses = 0;
     jsize len = (*env)->GetArrayLength(env, array);
     jint *localArray;
     localArray  = (jint *) (*env)->GetIntArrayElements(env, array, 0);
@@ -12,16 +12,20 @@ JNIEXPORT jint JNICALL Java_com_hut_InsertionSort_cSort
     for(i = 1; i < len; i++){
         j = i;
         while (j > 0 && localArray[j] < localArray[j-1]){
+            memoryAccesses += 3;
             k = localArray[j];
+            memoryAccesses++;
             localArray[j] = localArray[j-1];
+            memoryAccesses += 2;
             localArray[j-1] = k;
+            memoryAccesses++;
             j--;
+            memoryAccesses++;
         }
     }
 
     // TODO: Check if we died here and return 0 if we did die
 
     (*env)->ReleaseIntArrayElements(env, array, localArray, 0);
-
-    return 1;
+    return memoryAccesses;
 }
