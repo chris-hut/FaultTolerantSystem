@@ -33,8 +33,7 @@ public class Driver {
             valuesToSort = getValuesToSort(in);
         }catch(IOException e){
             // Something messed up reading from the file
-            System.err.println("Error reading file");
-            e.printStackTrace();
+            System.err.println("Error reading file: " + in);
             System.exit(1);
         }
 
