@@ -21,7 +21,7 @@ public class InsertionSort extends Sort {
     public void sort(){
         // TODO: Check return value of cSort
         cSort(values);
-        for(;;);
+        complete = true;
      }
 
     private native int cSort(int[] values);

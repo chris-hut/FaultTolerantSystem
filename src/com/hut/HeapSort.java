@@ -22,10 +22,7 @@ public class HeapSort extends Sort{
             heapSize--;
             maxHeapify(0);
         }
-
         complete = true;
-        while(true){/*lol*/}
-
     }
 
     private void buildHeap(){

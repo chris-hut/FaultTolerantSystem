@@ -42,9 +42,11 @@ public class Driver {
         // If we're here we have a good array to sort!
         int[] valuesForPrimary = valuesToSort;
         Sort primary = new HeapSort();
+        System.out.println("Trying primary sort");
         runSort(primary, valuesForPrimary, timeout, primaryFailure);
         // TODO: Check if sort failed or if watchdoge expired
         if(primary.isComplete() && AcceptanceTest.isSorted(valuesForPrimary)){
+            System.out.println("Primary sort completed");
             // This sorted everything properly, we can go home now
             try{
                 FileUtil.writeFile(out, valuesForPrimary);
@@ -54,12 +56,14 @@ public class Driver {
                 System.exit(1);
             }
         }else{
+            System.out.println("Trying secondary sort");
             Sort secondary = new InsertionSort();
             // TODO: Gotta run the secondary sort
             runSort(secondary, valuesToSort, timeout, secondaryFailure);
 
             // TODO: Check if sort failed or if watchdoge expired
             if(secondary.isComplete() && AcceptanceTest.isSorted(valuesToSort)){
+                System.out.println("Secondary sort completed");
                 try{
                     FileUtil.writeFile(out, valuesToSort);
                 }catch(IOException e){
