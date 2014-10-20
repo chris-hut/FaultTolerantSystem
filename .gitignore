@@ -1,3 +1,4 @@
 out/
 outfile.txt
 *.class
+.idea/workspace.xml

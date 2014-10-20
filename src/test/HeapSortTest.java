@@ -18,7 +18,8 @@ public class HeapSortTest extends TestCase {
 
     public void testSortOneValue(){
         int[] a = {0};
-        sort.sort(a);
+        sort.setValues(a);
+        sort.sort();
 
         // XXX: Should I even be checking the length?
         assertEquals(a.length, 1);
@@ -27,14 +28,16 @@ public class HeapSortTest extends TestCase {
 
     public void testSortArrayEmpty() {
         int[] a = {};
-        sort.sort(a);
+        sort.setValues(a);
+        sort.sort();
 
         assertEquals(a.length, 0);
     }
 
     public void testSortAllSameValue(){
         int[] a = {1,1,1,1,1};
-        sort.sort(a);
+        sort.setValues(a);
+        sort.sort();
 
         assertEquals(a.length, 5);
         for(int i: a){
@@ -45,14 +48,16 @@ public class HeapSortTest extends TestCase {
 
     public void testAlreadySorted(){
         int a[] = {4, 8, 15, 16, 23, 42};
-        sort.sort(a);
+        sort.setValues(a);
+        sort.sort();
 
         checkSorted(a);
     }
 
     public void testReverseSorted(){
         int a[] = {108, 42, 23, 16, 15, 8, 4};
-        sort.sort(a);
+        sort.setValues(a);
+        sort.sort();
 
         checkSorted(a);
     }
@@ -64,7 +69,8 @@ public class HeapSortTest extends TestCase {
             a[i] = r.nextInt();
         }
 
-        sort.sort(a);
+        sort.setValues(a);
+        sort.sort();
 
         checkSorted(a);
     }
@@ -76,14 +82,16 @@ public class HeapSortTest extends TestCase {
             a[i] = r.nextInt();
         }
 
-        sort.sort(a);
+        sort.setValues(a);
+        sort.sort();
 
         checkSorted(a);
     }
 
     public void testMiddleValuesEqual(){
         int a[] = {4, 8, 15, 15, 23, 42};
-        sort.sort(a);
+        sort.setValues(a);
+        sort.sort();
 
         checkSorted(a);
     }
